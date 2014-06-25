@@ -1,8 +1,8 @@
 node-cube.js 使用示例
 =============
-？honeycomb
 
 一、示例的启动
+---------
 
 1. 在项目根目录下运行 npm install 安装依赖包
 
@@ -11,6 +11,7 @@ node-cube.js 使用示例
 3. 浏览器访问 http://localhost:3000/routerPath/
 
 二、项目部署
+----------
 
 1.后端路由捕获 (app.js)
 ```js
@@ -98,6 +99,7 @@ module.exports = a;
 ```
 
 三、请求过程解析
+-----------
 
 1、html
 
@@ -183,6 +185,7 @@ return module.exports;});
 
 
 四、路径解释
+-----------
 
 本示例中，一共有两个路径需要注意，前端路由路径 '/routerPath' 和 后端静态文件夹路径 '../res'。
 
@@ -201,7 +204,9 @@ return module.exports;});
 后端静态文件夹路径 '../res' 只出现在了lib/cube_middleware.js 中，这是由后端静态资源相对于cube_middleware.js的实际存储路径决定的。
 
 
+
 五、 cube_middleware.js 的 honeycomb兼容。
+-----------
 
 honeycomb要进行一层middleware的兼容,如下所示
 ```js
