@@ -164,7 +164,8 @@ return module.exports;});
 
 
 c.js的实际请求内容：它的依赖数组为空
-```jsCube("/js/c.js", [], function (module, exports, require, async, __dirname, __filename) {
+```js
+Cube("/js/c.js", [], function (module, exports, require, async, __dirname, __filename) {
 var c = function () {
 	this.name = 'c';
 	alert('c loaded');
