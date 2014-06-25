@@ -1,0 +1,36 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<!-- 加载cube.js前端模块，此脚本负责模块请求的封装和依赖关系的解析 -->
+<script src="/routerPath/js/cube.js" type="text/javascript"></script>
+<script>
+// cube.js 的初始化和请求发起
+;(function () {
+	var base = '/routerPath'; // 静态资源路由
+	// 此示例需要加载没有依赖关系的a.js和c.js两个模块
+	var appConfig = [{
+	  app: '/js/a.js'
+	}, {
+	  app: '/js/c.js'
+	}];
+	//Cube.init 初始化 node-cube
+	Cube.init({
+	  base: base, //静态资源路由
+	  charset: 'utf-8'
+	});
+	//Cube.use加载后端模块
+	appConfig.forEach(function (d) {
+		Cube.use(d.app, function (App) {
+		   //App 即为各模块的module.exports
+		   new App();
+		});
+	});
+})();
+</script>
+</head>
+
+<body>
+</body>
+</html>

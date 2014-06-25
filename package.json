@@ -1,0 +1,10 @@
+{
+  "name": "node-cube-front-end-example",
+  "main": "",
+  "version": "0.0.1",
+  "dependencies": {
+    "connect": "2.19.6",
+    "serve-static": "*",
+    "node-cube": "*"
+  }
+}
