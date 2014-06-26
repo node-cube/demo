@@ -1,6 +1,6 @@
 var d = function () {
 	this.name = 'd';
-	alert('d loaded');
+    document.body.innerHTML += "<br>d loaded";
 };
 
 module.exports = d;

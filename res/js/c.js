@@ -1,5 +1,5 @@
 var c = function () {
-	this.name = 'c';
-	alert('c loaded');
+  this.name = 'c';
+  document.body.innerHTML += "<br>c loaded";
 };
 module.exports= c;
