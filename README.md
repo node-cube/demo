@@ -201,7 +201,6 @@ honeycomb要进行一层middleware的兼容,如下所示
 ```js
 var cube = require('node-cube'); // 载入node-cube模块
 var Path = require('path');
-var connect = require('connect');
 
 //设置静态资源文件夹路径
 var assetsDir = Path.join(__dirname, '../res');
