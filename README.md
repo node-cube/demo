@@ -210,8 +210,7 @@ var scriptProcessor = cube.init({
   middleware: true,
   root: assetsDir
 });
-//初始化静态资源读取模块
-var staticProcessor = connect.static(assetsDir);
+
 // 中间件处理流程：
 // scriptProcessor 会对带?m=1查询参数的资源访问进行捕获, 对相应的资源进行依赖关系的处理后，传送给前端。
 // 对不带?m=1查询参数的资源，scriptProcessor不捕获，此处则是由staticProcessor直接返回静态资源。
@@ -219,12 +218,7 @@ var staticProcessor = connect.static(assetsDir);
 module.exports = function () {
   return { // honeycomb兼容
     middleware: function () { // honeycomb兼容
-      return function (req, res, next) {
-        scriptProcessor(req, res, function () {
-          console.log(' cube miss match, go to next >>>');
-          staticProcessor(req, res, next);
-        });
-      }
+      return scriptProcessor;
     } // honeycomb兼容
   }; // honeycomb兼容
 };
