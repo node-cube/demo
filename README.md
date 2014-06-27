@@ -17,14 +17,10 @@ node-cube.js 使用示例
 ```js
 var connect = require('connect');
 var http = require('http');
-// node-cube 中间件模块
-var cube_middleware = require('./lib/cube_middleware');
+var cube_middleware = require('./lib/cube_middleware'); // node-cube 中间件模块
 
 var app = connect()
-  // node-cube 加载模块时带?m=1的query参数，需要用connect.query进行解析
-  .use(connect.query())
-  // 路由捕获
-  .use('/routerPath', cube_middleware);
+  .use('/routerPath', cube_middleware);  // 路由捕获
 
 http.createServer(app).listen(3000);
 ```
@@ -33,7 +29,6 @@ http.createServer(app).listen(3000);
 ```js
 var cube = require('node-cube'); // 载入node-cube模块
 var Path = require('path');
-var connect = require('connect');
 
 //设置静态资源文件夹路径
 var assetsDir = Path.join(__dirname, '../res');
@@ -42,17 +37,11 @@ var scriptProcessor = cube.init({
   middleware: true,
   root: assetsDir
 });
-//初始化静态资源读取模块
-var staticProcessor = connect.static(assetsDir);
+
 // 中间件处理流程：
 // scriptProcessor 会对带?m=1查询参数的资源访问进行捕获, 对相应的资源进行依赖关系的处理后，传送给前端。
-// 对不带?m=1查询参数的资源，scriptProcessor不捕获，此处则是由staticProcessor直接返回静态资源。
-module.exports = function (req, res, next) {
-  scriptProcessor(req, res, function () {
-    console.log(' cube miss match, go to next >>>');
-    staticProcessor(req, res, next);
-  });
-};
+// 对不带?m=1查询参数的资源，scriptProcessor直接返回静态资源。
+module.exports = scriptProcessor;
 ```
 
 3、模块格式 （res/a.js）格式类似于后端的node模块
