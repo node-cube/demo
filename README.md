@@ -197,31 +197,19 @@ return module.exports;});
 五、 cube_middleware.js 的 honeycomb兼容。
 -----------
 
-honeycomb要进行一层middleware的兼容,如下所示
-```js
-var cube = require('node-cube'); // 载入node-cube模块
-var Path = require('path');
++ 首先在package.json文件的依赖中，加入"middleware-cube"包。
 
-//设置静态资源文件夹路径
-var assetsDir = Path.join(__dirname, '../res');
-//初始化node-cube脚本处理模块
-var scriptProcessor = cube.init({
-  middleware: true,
-  root: assetsDir
-});
++ 然后在extensions里面加入如下配置即可
 
-// 中间件处理流程：
-// scriptProcessor 会对带?m=1查询参数的资源访问进行捕获, 对相应的资源进行依赖关系的处理后，传送给前端。
-// 对不带?m=1查询参数的资源，scriptProcessor不捕获，此处则是由staticProcessor直接返回静态资源。
 
-module.exports = function () {
-  return { // honeycomb兼容
-    middleware: function () { // honeycomb兼容
-      return scriptProcessor;
-    } // honeycomb兼容
-  }; // honeycomb兼容
-};
+目前仅支持一个dir参数，静态文件的路径，路径相对于项目根目录。
+```yaml
+extensions:
+  '/ > middleware-cube':
+    dir : './res/'
 ```
+
+
 
 
 
