@@ -208,8 +208,7 @@ extensions:
   '/ > middleware-cube':
     dir : './res/'
 ```
-
-
+其中'/'为前端路由路径（相当于前面示例中的'/routerPath',需与前端的base路径一致），'./res'为后端静态文件夹路径。
 
 
 
